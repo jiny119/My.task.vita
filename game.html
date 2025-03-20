@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Game</title>
+</head>
+<body>
+    <h2>Play & Win!</h2>
+    <p>Jump over obstacles and score points.</p>
+    <canvas id="gameCanvas"></canvas>
+    <script>
+        let canvas = document.getElementById("gameCanvas");
+        let ctx = canvas.getContext("2d");
+        let player = { x: 50, y: 50, size: 20, speed: 5 };
+        document.addEventListener("keydown", function () {
+            player.y -= 10;
+        });
+
+        function updateGame() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "blue";
+            ctx.fillRect(player.x, player.y, player.size, player.size);
+            player.y += player.speed;
+            requestAnimationFrame(updateGame);
+        }
+        updateGame();
+    </script>
+</body>
+</html>
